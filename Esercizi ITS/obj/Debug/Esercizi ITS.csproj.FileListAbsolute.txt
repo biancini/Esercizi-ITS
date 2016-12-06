@@ -1,0 +1,6 @@
+c:\users\biancan1\documents\visual studio 2015\Projects\Esercizi ITS\Esercizi ITS\bin\Debug\Esercizi ITS.exe.config
+c:\users\biancan1\documents\visual studio 2015\Projects\Esercizi ITS\Esercizi ITS\bin\Debug\Esercizi ITS.exe
+c:\users\biancan1\documents\visual studio 2015\Projects\Esercizi ITS\Esercizi ITS\bin\Debug\Esercizi ITS.pdb
+c:\users\biancan1\documents\visual studio 2015\Projects\Esercizi ITS\Esercizi ITS\obj\Debug\Esercizi ITS.csprojResolveAssemblyReference.cache
+c:\users\biancan1\documents\visual studio 2015\Projects\Esercizi ITS\Esercizi ITS\obj\Debug\Esercizi ITS.exe
+c:\users\biancan1\documents\visual studio 2015\Projects\Esercizi ITS\Esercizi ITS\obj\Debug\Esercizi ITS.pdb
