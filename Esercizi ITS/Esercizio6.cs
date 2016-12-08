@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+Esercizio: Scrivere la funzione fattoriale in modo ricorsivo, cioe facendo in modo che la funzione che calcola il fattoriale chiami se stessa.
+*/
+
+using System;
 
 namespace Esercizi_ITS
 {

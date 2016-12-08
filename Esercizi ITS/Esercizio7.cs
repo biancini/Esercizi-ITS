@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Esercizio: Scrivere un programma che, data una stringa, restituisca un conteggio delle lettere in essa presenti.
+(si consiglia di usare un array con 26 posizioni, una per ogni lettera dell'alfabeto, inizializzato tutto a zeri scorrere la stringa
+ e incrementare il contatore della lettera corrispondente).
+*/
+
+using System;
 using System.Text;
 
 namespace Esercizi_ITS

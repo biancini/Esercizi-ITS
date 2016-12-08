@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Esercizio: scrivete un programma che, letti due numeri interi da
+terminale, restituisca il loro rapporto
+*/
+
+using System;
 
 namespace Esercizi_ITS
 {

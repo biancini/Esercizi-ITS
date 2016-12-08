@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+Esercizio: scrivere un programma che:
+- chieda all'utente di inserire un intero a scelta tra 1 e 2, e
+  restituisca a terminale il valore inserito, o un messaggio di errore
+  in caso di inserimento di altri interi
+*/
+
+using System;
 
 namespace Esercizi_ITS
 {

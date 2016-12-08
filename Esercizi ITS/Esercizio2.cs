@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Esercizio: Scrivere un programma che scrive a terminale
+la radice quadrata di 2, il cubo di 2 il seno di pigreco/4
+*/
+
+using System;
 
 namespace Esercizi_ITS
 {

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+Esercizio: scrivere un programma che, dato un array di n interi casuali, lo
+ordini dal più piccolo al più grande.
+
+Suggerimento: per generare i numeri casuali, usate la funzione rand()
+contenuta in cstdlib
+*/
+
+using System;
 
 namespace Esercizi_ITS
 {

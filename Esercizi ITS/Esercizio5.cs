@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Esercizio: scrivere una funzione che calcoli il fattoriale di un numero intero
+non negativo
+*/
+
+using System;
 
 namespace Esercizi_ITS
 {
