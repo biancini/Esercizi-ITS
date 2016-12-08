@@ -1,0 +1,27 @@
+{
+  "name": "EserciziITS",
+  "version": "1.0.0",
+  "description": "Esercizi di programmazione per il corso ITS",
+  "author": "Andrea Biancini <andrea.biancini@reti.it>",
+  "main": "index",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RetiSpA/Esercizi-ITS.git"
+  },
+  "engines": {
+    "node": ">= 0.6.x"
+  },
+  "files": [
+    "esercizio1.js",
+    "esercizio2.js",
+    "esercizio3.js",
+    "esercizio4.js",
+    "esercizio5.js",
+    "esercizio6.js",
+    "esercizio7.js"
+  ],
+  "dependencies": {
+    "readline-sync": ">= 1.4.5"
+  }
+}
