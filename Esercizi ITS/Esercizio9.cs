@@ -35,7 +35,6 @@ namespace Esercizi_ITS
 	        im_p = im;
         }
 
-        
         public static Complesso operator +(Complesso c1, Complesso c2)
         {
             double re = c1.re_p + c2.re_p;
