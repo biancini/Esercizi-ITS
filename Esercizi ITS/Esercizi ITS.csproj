@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Esercizi_ITS.Esercizio7</StartupObject>
+    <StartupObject>Esercizi_ITS.Esercizio8</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Esercizio9.cs" />
+    <Compile Include="Esercizio8.cs" />
     <Compile Include="Esercizio7.cs" />
     <Compile Include="Esercizio6.cs" />
     <Compile Include="Esercizio5.cs" />
