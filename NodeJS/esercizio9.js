@@ -14,75 +14,114 @@ Implementare gli operatori
 
 'use strict';
 
-function Complesso(re, im) {
-	var re_p = (re) ? re : 0;
-	var im_p = (im) ? im : 0;
+function Complesso(Reale, Immaginaria) {
+	var parteReale = 0;
+	var parteImmaginaria = 0;
+
+	if (typeof Reale === 'number') {
+		parteReale = Reale;
+		parteImmaginaria = Immaginaria;
+	}
+	else {
+		parteReale = Reale.getParteReale();
+		parteImmaginaria = Reale.getParteImmaginaria();
+	}
 	
 	return {
-		getRe: function() {
-			return re_p;
+		getParteReale: function() {
+			return parteReale;
 		},
-		getIm: function() {
-			return im_p;
+		getParteImmaginaria: function() {
+			return parteImmaginaria;
 		},
-        sum: function (c) {
-			var re = re_p + c.getRe();
-            var im = im_p + c.getIm();
-            var rit = new Complesso(re, im);
-            return rit;
-        },
+		sum: function (c) {
+			var Reale = 0;
+			var Immaginaria = 0;
+			if (typeof c === 'number') {
+				Reale = parteReale + c;
+				Immaginaria = parteImmaginaria;
+			}
+			else {
+				Reale = parteReale + c.getParteReale();
+				Immaginaria = parteImmaginaria + c.getParteImmaginaria();
+			}
+
+			return new Complesso(Reale, Immaginaria);
+		},
 		subtract: function (c) {
-			var re = re_p - c.getRe();
-            var im = im_p - c.getIm();
+			var Reale = 0;
+			var Immaginaria = 0;
+			if (typeof c === 'number') {
+				Reale = parteReame - c;
+				Immaginaria = parteImmaginaria;
+			}
+			else {
+				Reale = parteReale - c.getParteReale();
+				Immaginaria = parteImmaginaria - c.getParteImmaginaria();
+			}
 
-            var rit = new Complesso(re, im);
-            return rit;
-        },
+			return new Complesso(Reale, Immaginaria);
+		},
 		times: function (c) {
-            var re = re_p * c.getRe() - im_p * c.getIm();
-            var im = im_p * c.getRe() + re_p * c.getIm();
+			var Reale = 0;
+			var Immaginaria = 0;
+			if (typeof c === 'number') {
+				Reale = parteReale * c;
+				Immaginaria = parteImmaginaria * c;
+			}
+			else {
+				Reale = parteReale * c.getParteReale() - parteImmaginaria * c.getParteImmaginaria();
+				Immaginaria = parteImmaginaria * c.getParteReale() + parteReale * c.getParteImmaginaria();
+			}
 
-            var rit = new Complesso(re, im);
-            return rit;
-        },
+			return new Complesso(Reale, Immaginaria);
+		},
 		divided: function (c) {
-            var coeff = Math.pow(c.getRe(), 2) + Math.pow(c.getIm(), 2);
-            var re = (re_p * c.getRe() + im_p * c.getIm()) / coeff;
-            var im = (c.getRe() * im_p - re_p * c.getIm()) / coeff;
+			var Reale = 0;
+			var Immaginaria = 0;
+			if (typeof c === 'number') {
+				var coeff = Math.pow(c, 2);
+				Reale = (parteReale * c) / coeff;
+				Immaginaria = (parteImmaginaria * c) / coeff;
+			}
+			else {
+				var coeff = Math.pow(c.getParteReale(), 2) + Math.pow(c.getParteImmaginaria(), 2);
+				Reale = (parteReale * c.getParteReale() + parteImmaginaria * c.getParteImmaginaria()) / coeff;
+				Immaginaria = (c.getParteReale() * parteImmaginaria - parteReale * c.getParteImmaginaria()) / coeff;
+			}
 
-            var rit = new Complesso(re, im);
-            return rit;
-        },
+			return new Complesso(Reale, Immaginaria);
+		},
 		pow: function (potenza) {
-            var numero = new Complesso(re_p, im_p);
+			var numero = new Complesso(parteReale, parteImmaginaria);
 
-            for (var i = 0; i < potenza; i++) {
-                numero = numero.times(numero);
-            }
+			for (var i = 0; i < potenza; i++) {
+				numero = numero.times(numero);
+			}
 
-            return numero;
-        },
-        Mod: function () {
-	        return Math.sqrt(Math.pow(re_p, 2) + Math.pow(im_p, 2));
-        },
+			return numero;
+		},
+		Mod: function () {
+			return Math.sqrt(Math.pow(parteReale, 2) + Math.pow(parteImmaginaria, 2));
+		},
 		Rho: function () {
-	        return Math.sqrt(Math.pow(re_p, 2) + Math.pow(im_p, 2));
-        },
+			return Math.sqrt(Math.pow(parteReale, 2) + Math.pow(parteImmaginaria, 2));
+		},
 		Theta: function () {
-	        if (re_p > 0) {
-		        return Math.atan(im_p/re_p);
-	        }
+			if (parteReale > 0) {
+				return Math.atan(parteImmaginaria/parteReale);
+			}
 	
-	        if (re_p < 0) {
-		        return Math.atan(im_p/re_p) + Math.PI;
-	        }
+			if (parteReale < 0) {
+				return Math.atan(parteImmaginaria/parteReale) + Math.PI;
+			}
 
-	        return (im_p > 0) ? Math.PI / 2 : -Math.PI / 2;
-        },
+			return (parteImmaginaria > 0) ? Math.PI / 2 : -Math.PI / 2;
+		},
 		Print: function () {
-            console.log(re_p + "+" + im_p + "i");
-        }
-    };
+			console.log(parteReale + "+" + parteImmaginaria + "i");
+		}
+	};
 }
 
 var a = new Complesso(1, 2);

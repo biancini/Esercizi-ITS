@@ -17,103 +17,95 @@ namespace Esercizi_ITS
 {
     public class Complesso
     {
-        double re_p { get; set; }
-        double im_p { get; set; }
+        public double ParteReale { get; private set; }
+        public double ParteImmaginaria { get; private set; }
 
         public Complesso() {
-        	re_p = 0;
-            im_p = 0;
+        	ParteReale = 0;
+            ParteImmaginaria = 0;
         }
 
-        public Complesso (Complesso original) {
-	        re_p = original.re_p;
-	        im_p = original.im_p;
+        public Complesso (Complesso Original) {
+	        ParteReale = Original.ParteReale;
+	        ParteImmaginaria = Original.ParteImmaginaria;
         }
 
-        public Complesso(double re, double im) {
-	        re_p = re;
-	        im_p = im;
+        public Complesso(double Reale, double Immaginaria) {
+	        ParteReale = Reale;
+	        ParteImmaginaria = Immaginaria;
         }
 
-        public static Complesso operator +(Complesso c1, Complesso c2)
+        public static Complesso operator +(Complesso Complesso1, Complesso Complesso2)
         {
-            double re = c1.re_p + c2.re_p;
-            double im = c1.im_p + c2.im_p;
+            double Reale = Complesso1.ParteReale + Complesso2.ParteReale;
+            double Immaginaria = Complesso1.ParteImmaginaria + Complesso2.ParteImmaginaria;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator -(Complesso c1, Complesso c2)
+        public static Complesso operator -(Complesso Complesso1, Complesso Complesso2)
         {
-            double re = c1.re_p - c2.re_p;
-            double im = c1.im_p - c2.im_p;
+            double Reale = Complesso1.ParteReale - Complesso2.ParteReale;
+            double Immaginaria = Complesso1.ParteImmaginaria - Complesso2.ParteImmaginaria;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator *(Complesso c1, Complesso c2)
+        public static Complesso operator *(Complesso Complesso1, Complesso Complesso2)
         {
-            double re = c1.re_p * c2.re_p - c1.im_p * c2.im_p;
-            double im = c1.im_p * c2.re_p + c1.re_p * c2.im_p;
+            double Reale = Complesso1.ParteReale * Complesso2.ParteReale - Complesso1.ParteImmaginaria * Complesso2.ParteImmaginaria;
+            double Immaginaria = Complesso1.ParteImmaginaria * Complesso2.ParteReale + Complesso1.ParteReale * Complesso2.ParteImmaginaria;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator /(Complesso c1, Complesso c2)
+        public static Complesso operator /(Complesso Complesso1, Complesso Complesso2)
         {
-            double coeff = Math.Pow(c2.re_p, 2) + Math.Pow(c2.im_p, 2);
-            double re = (c1.re_p * c2.re_p + c1.im_p * c2.im_p) / coeff;
-            double im = (c2.re_p * c1.im_p - c1.re_p * c2.im_p) / coeff;
+            double Coefficiente = Math.Pow(Complesso2.ParteReale, 2) + Math.Pow(Complesso2.ParteImmaginaria, 2);
+            double Reale = (Complesso1.ParteReale * Complesso2.ParteReale + Complesso1.ParteImmaginaria * Complesso2.ParteImmaginaria) / Coefficiente;
+            double Immaginaria = (Complesso2.ParteReale * Complesso1.ParteImmaginaria - Complesso1.ParteReale * Complesso2.ParteImmaginaria) / Coefficiente;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator +(Complesso c, double d)
+        public static Complesso operator +(Complesso Complesso1, double Double2)
         {
-            double re = c.re_p + d;
-            double im = c.im_p;
+            double Reale = Complesso1.ParteReale + Double2;
+            double Immaginaria = Complesso1.ParteImmaginaria;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator -(Complesso c, double d)
+        public static Complesso operator -(Complesso Complesso1, double Double2)
         {
-            double re = c.re_p - d;
-            double im = c.im_p;
+            double Reale = Complesso1.ParteReale - Double2;
+            double Immaginaria = Complesso1.ParteImmaginaria;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator *(Complesso c, double d)
+        public static Complesso operator *(Complesso Complesso1, double Double2)
         {
-            double re = c.re_p * d;
-            double im = c.im_p * d;
+            double Reale = Complesso1.ParteReale * Double2;
+            double Immaginaria = Complesso1.ParteImmaginaria * Double2;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator /(Complesso c, double d)
+        public static Complesso operator /(Complesso Complesso1, double Double2)
         {
-            double coeff = Math.Pow(d, 2);
-            double re = (c.re_p * d) / coeff;
-            double im = (d * c.im_p) / coeff;
+            double Coefficente = Math.Pow(Double2, 2);
+            double Reale = (Complesso1.ParteReale * Double2) / Coeffificente;
+            double Immaginaria = (Double2 * Complesso1.ParteImmaginaria) / Coefficente;
 
-            Complesso rit = new Complesso(re, im);
-            return rit;
+            return new Complesso(Reale, Immaginaria);
         }
 
-        public static Complesso operator ^(Complesso c, int potenza)
+        public static Complesso operator ^(Complesso Complesso1, int Potenza)
         {
-            Complesso numero = new Complesso(c.re_p, c.im_p);
+            Complesso numero = new Complesso(Complesso1.ParteReale, Complesso1.ParteImmaginaria);
 
-            for (int i = 0; i < potenza; i++)
+            for (int i = 0; i < Potenza; i++)
             {
                 numero = numero * numero;
             }
@@ -122,27 +114,27 @@ namespace Esercizi_ITS
         }
 
         public double Mod() {
-	        return Math.Sqrt(Math.Pow(re_p, 2) + Math.Pow(im_p, 2));
+	        return Math.Sqrt(Math.Pow(ParteReale, 2) + Math.Pow(ParteImmaginaria, 2));
         }
 
         public double Rho() {
-	        return Math.Sqrt(Math.Pow(re_p, 2) + Math.Pow(im_p, 2));
+	        return Math.Sqrt(Math.Pow(ParteReale, 2) + Math.Pow(ParteImmaginaria, 2));
         }
 
         public double Theta() {
-	        if (re_p > 0) {
-		        return Math.Atan(im_p/re_p);
+	        if (ParteReale > 0) {
+		        return Math.Atan(ParteImmaginaria/ParteReale);
 	        }
 	
-	        if (re_p< 0) {
-		        return Math.Atan(im_p/re_p) + Math.PI;
+	        if (ParteReale< 0) {
+		        return Math.Atan(ParteImmaginaria/ParteReale) + Math.PI;
 	        }
 
-	        return (im_p > 0) ? Math.PI / 2 : -Math.PI / 2;
+	        return (ParteImmaginaria > 0) ? Math.PI / 2 : -Math.PI / 2;
         }
 
         public void Print() {
-            Console.WriteLine(re_p + "+" + im_p + "i");
+            Console.WriteLine(ParteReale + "+" + ParteImmaginaria + "i");
         }
     }
 

@@ -22,37 +22,36 @@ double randFlat(double a, double b) {
 int main() {
 	srand (time(NULL));
 
-	double a = 0.;
-	double b = 1.;
-	std::cout << "Inserisci gli estremi dell'intervallo [a,b) in cui generare i numeri: ";
-	std::cin >> a >> b;
-
-	int numeri = 0;
-	std::cout << "Inserisci quanti numeri casuali vuoi generare: ";
-	std::cin >> numeri;
-
 	//creo l'istogramma
 	double min = 0.;
 	double max = 1.;
-	std::cout << "Inserisci gli estremi dell'istogramma [min,max): ";
-	std::cin >> min >> max;
+	std::cout << "Inserisci gli estremi dell'istogramma [min,max)." << std::endl;
+	std::cout << "Estremo min: ";
+	std::cin >> min;
+	std::cout << "Estremo max: ";
+	std::cin >> max;
 
 	int nBin = 0;
 	std::cout << "Inserisci il numero di bin dell'istogramma: ";
 	std::cin >> nBin;
 
+	int numeri = 0;
+	std::cout << "Inserisci quanti numeri casuali vuoi generare: ";
+	std::cin >> numeri;
+
+
 	// ctor
 	istogramma histo(nBin, min, max);
 
 	// riempio l'istogramma
-	for(int i = 0; i < numeri; ++i) {
-		double number = randFlat(a, b);
+	for (int i = 0; i < numeri; ++i) {
+		double number = randFlat(min, max);
 		histo.Fill(number);
 	}
 
 	// stampo 
-	std::cout << "Mean = "<<  std::setprecision(5) << histo.GetMean() << std::endl; 
-	std::cout << "RMS  = "<<  std::setprecision(5) << histo.GetRMS() << std::endl; 
+	std::cout << "Mean = " << std::setprecision(5) << histo.GetMean() << std::endl; 
+	std::cout << "RMS  = " << std::setprecision(5) << histo.GetRMS() << std::endl; 
 	//histo.Print();
 
 	return 0;

@@ -5,78 +5,71 @@ double GetRMS() (che calcola la deviazione standard)
 */
 
 using System;
+using System.Linq;
 
 namespace Esercizi_ITS
 {
     public class Istogramma
     {
-        int nBin_p { get; set; }
-        double min_p { get; set; }
-        double max_p { get; set; }
-        int[] binContent_p { get; set; }
-        int entries_p { get; set; }
+        public int NumeroBin { get; private set; }
+        public double ValoreMinimo { get; private set; }
+        public double ValoreMassimo { get; private set; }
+        public int[] ContenutoDeiBin { get; private set; }
+        public int NumeroElementi { get; private set; }
 
         public Istogramma () {
-	        nBin_p = 0;
-	        min_p = 0;
-	        max_p = 0;
-	        binContent_p = null;
-	        entries_p = 0;
+	        NumeroBin = 0;
+	        ValoreMinimo = 0;
+	        ValoreMassimo = 0;
+	        ContenutoDeiBin = null;
+	        NumeroElementi = 0;
         }
 
-        public Istogramma (int nBin, double min, double max) {
-            nBin_p = nBin;
-            min_p = min;
-            max_p = max;
-            binContent_p = new int[nBin_p];
-            entries_p = 0;
-	
+        public Istogramma (int NumeroBin, double ValoreMinimo, double ValoreMassimo) {
+            this.NumeroBin = NumeroBin;
+            this.ValoreMinimo = ValoreMinimo;
+            this.ValoreMassimo = ValoreMassimo;
+            ContenutoDeiBin = new int[NumeroBin];
+            NumeroElementi = 0;
+
             //azzero gli elementi dell'istogramma
-            for (int i = 0; i<nBin_p; ++i) {
-	            binContent_p[i] = 0;
-            }
+            Array.Clear(ContenutoDeiBin, 0, ContenutoDeiBin.Length);
         }
 
-        public int Fill(double value) {
-            if (value < min_p || value >= max_p) {
+        public int Fill(double Value) {
+            if (Value < ValoreMinimo || Value >= ValoreMassimo) {
                 return -1;
             }
             else {
-                ++entries_p;
+                ++NumeroElementi;
 
-                double invStep = nBin_p / (max_p - min_p);
-                int bin = (int)((value - min_p) * invStep);
+                // Calcolo il bin in cui deve essere inserito l'elemento
+                double InversoStep = NumeroBin / (ValoreMassimo - ValoreMinimo);
+                int Bin = (int)((Value - ValoreMinimo) * InversoStep);
 
-                ++binContent_p[bin];
+                ++ContenutoDeiBin[Bin];
 
-                return bin;
+                return Bin;
             }
         }
 
         public void Print() {
             // normalizza l'istogrammma al valore maggiore
-            int max = 0;
-            for (int i = 0; i < nBin_p; ++i)
-            {
-                if (binContent_p[i] > max)
-                {
-                    max = binContent_p[i];
-                }
-            }
+            int Max = ContenutoDeiBin.Max();
 
             // fattore di dilatazione per la rappresentazione dell'istogramma
-            int scale = 50;
+            int Scale = 50;
 
             // disegna l'asse y
             Console.WriteLine("        +---------------------------------------------------------------->");
 
-            double invStep = nBin_p / (max_p - min_p);
+            double Step = (ValoreMassimo - ValoreMinimo) / NumeroBin;
             // disegna il contenuto dei bin
-            for (int i = 0; i < nBin_p; ++i)
+            for (int i = 0; i < NumeroBin; ++i)
             {
-                Console.Write((min_p + i / invStep).ToString("####0.00") + "|");
-                int freq = (int)(scale * binContent_p[i] / max);
-                for (int j = 0; j < freq; ++j)
+                Console.Write((ValoreMinimo + i * Step).ToString("0.00").PadRight(8) + "|");
+                int Frequenza = (int)(Scale * ContenutoDeiBin[i] / Max);
+                for (int j = 0; j < Frequenza; ++j)
                 {
                     Console.Write("#");
                 }
@@ -88,81 +81,78 @@ namespace Esercizi_ITS
 
         public double GetMean()
         {
-            double step = (max_p - min_p) / nBin_p;
-            double sum = 0;
+            double Step = (ValoreMassimo - ValoreMinimo) / NumeroBin;
+            double Sum = 0;
 
-            for (int i = 0; i < nBin_p; ++i)
+            for (int i = 0; i < NumeroBin; ++i)
             {
-                double val = i * step + min_p;
-                sum += val * binContent_p[i];
+                double Valore = i * Step + ValoreMinimo;
+                Sum += Valore * ContenutoDeiBin[i];
             }
 
-            return sum / entries_p;
+            return Sum / NumeroElementi;
         }
 
-        public double GetRMS()
+        public double GetRms()
         {
-            double step = (max_p - min_p) / nBin_p;
-            double sum = 0;
-            double sum2 = 0;
+            double Step = (ValoreMassimo - ValoreMinimo) / NumeroBin;
+            double Sum = 0;
+            double SumSquares = 0;
 
-            for (int i = 0; i < nBin_p; ++i)
+            for (int i = 0; i < NumeroBin; ++i)
             {
-                double val = i * step + min_p;
-                sum += val * binContent_p[i];
-                sum2 += Math.Pow(val, 2) * binContent_p[i];
+                double Valore = i * Step + ValoreMinimo;
+                Sum += Valore * ContenutoDeiBin[i];
+                SumSquares += Math.Pow(Valore, 2) * ContenutoDeiBin[i];
             }
 
-            return (sum2 / entries_p - (sum / entries_p) * (sum / entries_p));
+            return (SumSquares / NumeroElementi - Math.Pow(Sum / NumeroElementi, 2));
         }
 
         public int GetEntries()
         {
-            return entries_p;
+            return NumeroElementi;
         }
     }
 
     class Esercizio8
     {
-        static Random random = new Random();
+        static Random RandomGenerator = new Random();
 
-        static double RandFlat(double a, double b)
+        static double RandFlat(double ValoreMinimo, double ValoreMassimo)
         {
-            double r = a + (b - a) * random.NextDouble();
-            return r;
+            return ValoreMinimo + (ValoreMassimo - ValoreMinimo) * RandomGenerator.NextDouble();
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.Write("Inserisci gli estremi dell'intervallo [a,b) in cui generare i numeri: ");
-            double a = double.Parse(Console.ReadLine());
-            double b = double.Parse(Console.ReadLine());
-
-            Console.Write("Inserisci quanti numeri casuali vuoi generare: ");
-            int numeri = int.Parse(Console.ReadLine());
-
             //creo l'istogramma
-            Console.Write("Inserisci gli estremi dell'istogramma [min,max): ");
-            double min = double.Parse(Console.ReadLine());
-            double max = double.Parse(Console.ReadLine());
+            Console.WriteLine("Inserisci gli estremi dell'istogramma [min,max).");
+            Console.Write("Estremo min: ");
+            double Min = double.Parse(Console.ReadLine());
+            Console.Write("Estremo max: ");
+            double Max = double.Parse(Console.ReadLine());
 
             Console.Write("Inserisci il numero di bin dell'istogramma: ");
-            int nBin = int.Parse(Console.ReadLine());
+            int NumeroBin = int.Parse(Console.ReadLine());
+
+            Console.Write("Inserisci quanti numeri casuali vuoi generare: ");
+            int Numeri = int.Parse(Console.ReadLine());
 
             // ctor
-            Istogramma histo = new Istogramma(nBin, min, max);
+            Istogramma Histo = new Istogramma(NumeroBin, Min, Max);
 
             // riempio l'istogramma
-            for (int i = 0; i < numeri; ++i)
+            for (int i = 0; i < Numeri; ++i)
             {
-                double number = RandFlat(a, b);
-                histo.Fill(number);
+                double number = RandFlat(Min, Max);
+                Histo.Fill(number);
             }
 
             // stampo 
-            Console.WriteLine("Mean = " + histo.GetMean().ToString("####0.00"));
-            Console.WriteLine("RMS = " + histo.GetRMS().ToString("####0.00"));
-            histo.Print();
+            Console.WriteLine("Mean = " + Histo.GetMean().ToString("####0.00"));
+            Console.WriteLine("RMS = " + Histo.GetRms().ToString("####0.00"));
+            Histo.Print();
 
             // Comando per far mantenere aperta la console in attesa di un enter
             Console.ReadLine();
