@@ -95,7 +95,7 @@ namespace Esercizi_ITS
         public static Complesso operator /(Complesso Complesso1, double Double2)
         {
             double Coefficente = Math.Pow(Double2, 2);
-            double Reale = (Complesso1.ParteReale * Double2) / Coeffificente;
+            double Reale = (Complesso1.ParteReale * Double2) / Coefficente;
             double Immaginaria = (Double2 * Complesso1.ParteImmaginaria) / Coefficente;
 
             return new Complesso(Reale, Immaginaria);
