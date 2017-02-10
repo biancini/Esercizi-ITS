@@ -49,6 +49,7 @@ int main() {
 		histo.Fill(number);
 	}
 
+	histo.Print();
 	// stampo 
 	std::cout << "Mean = " << std::setprecision(5) << histo.GetMean() << std::endl; 
 	std::cout << "RMS  = " << std::setprecision(5) << histo.GetRMS() << std::endl; 
