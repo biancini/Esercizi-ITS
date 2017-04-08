@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NSubstitute;
 
 namespace Esempi_Test
 {
@@ -15,7 +16,7 @@ namespace Esempi_Test
             Program program = new Program();
 
             // when
-            int sum = program.add(5, 7);
+            int sum = program.Add(5, 7);
 
             // then
             Assert.AreEqual(12, sum);
@@ -39,10 +40,22 @@ namespace Esempi_Test
             Program program = new Program();
 
             // when
-            int sum = program.add(addend1, addend2);
+            int sum = program.Add(addend1, addend2);
 
             // then
             return sum;
+        }
+
+        /// <summary>
+        /// Tetsa il metodo che stampa la somma di due numeri.
+        /// </summary>
+        [TestCase]
+        public void TestStampaSommaDueNumeriInteri()
+        {
+            Program program = Substitute.For<Program>();
+            program.Add(5, 7).Returns(37);
+            string stampa = program.StampaSomma(5, 7);
+            Assert.AreEqual("La somma di 5 e 7 è: 37.", stampa);
         }
     }
 }

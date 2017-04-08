@@ -7,12 +7,24 @@ namespace Esempi_Test
         /// <summary>
         /// Metodo che effettua la somma di due addendi e ne restituisce il risultato.
         /// </summary>
-        /// <param name="addend1">Primo addendo.</param>
-        /// <param name="addend2">Secondo addendo.</param>
+        /// <param name="Addendo1">Primo addendo.</param>
+        /// <param name="Addendo2">Secondo addendo.</param>
         /// <returns>Il risultato della somma dei due addendi.</returns>
-        public int add(int addend1, int addend2)
+        public virtual int Add(int Addendo1, int Addendo2)
         {
-            return addend1 + addend2;
+            return Addendo1 + Addendo2;
+        }
+
+        /// <summary>
+        /// Metodo che stampa sulla stringa il risultato di una somma.
+        /// </summary>
+        /// <param name="Addendo1">Primo addendo.</param>
+        /// <param name="Addendo2">Secondo addendo.</param>
+        /// <returns>La stringa che descrive il risultato della somma dei due addendi.</returns>
+        public String StampaSomma(int Addendo1, int Addendo2)
+        {
+            int Somma = Add(Addendo1, Addendo2);
+            return $"La somma di {Addendo1} e {Addendo2} è: {Somma}.";
         }
 
         /// <summary>
@@ -27,7 +39,7 @@ namespace Esempi_Test
             int val2 = int.Parse(Console.ReadLine());
 
             Program p = new Program();
-            int somma = p.add(val1, val2);
+            int somma = p.Add(val1, val2);
             Console.WriteLine("La somma tra " + val1 + " e " + val2 + " è uguale a " + somma);
 
             // Comando per far mantenere aperta la console in attesa di un enter
