@@ -52,9 +52,14 @@ namespace Esempi_Test
         [TestCase]
         public void TestStampaSommaDueNumeriInteri()
         {
+            // given
             Program program = Substitute.For<Program>();
             program.Add(5, 7).Returns(37);
+
+            // when
             string stampa = program.StampaSomma(5, 7);
+
+            // then
             Assert.AreEqual("La somma di 5 e 7 è: 37.", stampa);
         }
     }
